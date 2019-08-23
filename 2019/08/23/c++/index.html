@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] C/C++const 修饰变量，说明该变量不可以被改变； 修饰指针，分为指向常量的指针和指针常量； 常量引用，经常用于形参类型，即避免了拷贝，又避免了函数对值的修改； 修饰成员函数，说明该成员函数内不能修改成员变量。123456789101112131415161718192021222324252627282930313233343536373839404142// 类class A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/08/23/c++/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] C/C++const 修饰变量，说明该变量不可以被改变； 修饰指针，分为指向常量的指针和指针常量； 常量引用，经常用于形参类型，即避免了拷贝，又避免了函数对值的修改； 修饰成员函数，说明该成员函数内不能修改成员变量。123456789101112131415161718192021222324252627282930313233343536373839404142// 类class A">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-16T09:31:26.590Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="[TOC] C/C++const 修饰变量，说明该变量不可以被改变； 修饰指针，分为指向常量的指针和指针常量； 常量引用，经常用于形参类型，即避免了拷贝，又避免了函数对值的修改； 修饰成员函数，说明该成员函数内不能修改成员变量。123456789101112131415161718192021222324252627282930313233343536373839404142// 类class A">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c++" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/23/c++/" class="article-date">
+  <time datetime="2019-08-23T08:14:19.230Z" itemprop="datePublished">2019-08-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h1><h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><ol>
+<li>修饰变量，说明该变量不可以被改变；</li>
+<li>修饰指针，分为指向常量的指针和指针常量；</li>
+<li>常量引用，经常用于形参类型，即避免了拷贝，又避免了函数对值的修改；</li>
+<li>修饰成员函数，说明该成员函数内不能修改成员变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">// 类</span><br><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    const int a;                // 常对象成员，只能在初始化列表赋值</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    // 构造函数</span><br><span class="line">    A() &#123; &#125;</span><br><span class="line">    A(int x) : a(x) &#123; &#125;        // 初始化列表</span><br><span class="line"></span><br><span class="line">    // const可用于对重载函数的区分</span><br><span class="line">    int getValue();             // 普通成员函数</span><br><span class="line">    int getValue() const;       // 常成员函数，不得修改类中的任何数据成员的值</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void function()</span><br><span class="line">&#123;</span><br><span class="line">    // 对象</span><br><span class="line">    A b;                        // 普通对象，可以调用全部成员函数</span><br><span class="line">    const A a;                  // 常对象，只能调用常成员函数、更新常成员变量</span><br><span class="line">    const A *p = &amp;a;            // 常指针</span><br><span class="line">    const A &amp;q = a;             // 常引用</span><br><span class="line"></span><br><span class="line">    // 指针</span><br><span class="line">    char greeting[] = &quot;Hello&quot;;</span><br><span class="line">    char* p1 = greeting;                // 指针变量，指向字符数组变量</span><br><span class="line">    const char* p2 = greeting;          // 指针变量，指向字符数组常量</span><br><span class="line">    char* const p3 = greeting;          // 常指针，指向字符数组变量</span><br><span class="line">    const char* const p4 = greeting;    // 常指针，指向字符数组常量</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 函数</span><br><span class="line">void function1(const int Var);           // 传递过来的参数在函数内不可变</span><br><span class="line">void function2(const char* Var);         // 参数指针所指内容为常量</span><br><span class="line">void function3(char* const Var);         // 参数指针为常指针</span><br><span class="line">void function4(const int&amp; Var);          // 引用参数在函数内为常量</span><br><span class="line"></span><br><span class="line">// 函数返回值</span><br><span class="line">const int function5();      // 返回一个常数</span><br><span class="line">const int* function6();     // 返回一个指向常量的指针变量，使用：const int *p = function6();</span><br><span class="line">int* const function7();     // 返回一个指向变量的常指针，使用：int* const p = function7();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><ol>
+<li>修饰普通变量，修改<strong>变量的存储区域</strong>和<strong>生命周期</strong>，使变量存储在静态区，在 main 函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。</li>
+<li>修饰普通函数，<strong>表明函数的作用范围</strong>，仅在定义该函数的文件内才能使用。在多人开发项目时，为了防止与他人命令函数重名，可以将函数定位为 static。</li>
+<li>修饰成员变量，修饰成员变量使所有的对象<strong>只保存一个该变量</strong>，而且<strong>不需要生成对象</strong>就可以访问该成员。</li>
+<li>修饰成员函数，修饰成员函数使得<strong>不需要生成对象</strong>就可以访问该函数，但是在 static 函数内<strong>不能访问非静态成员</strong>。</li>
+</ol>
+<h2 id="this指针"><a href="#this指针" class="headerlink" title="this指针"></a>this指针</h2><ol>
+<li><code>this</code>指针是一个隐含于<strong>每一个非静态成员函数</strong>的特殊指针。它指向正在被该成员函数操作的那个对象。</li>
+<li>当对一个对象调用成员函数时，编译程序先将对象的地址赋给<code>this</code>指针，然后调用成员函数。每次成员函数存取数据成员时，都隐含使用<code>this</code>指针。</li>
+<li>当一个成员函数被调用时，自动向它传递一个隐含参数，该参数是一个指向该成员函数所在对象的指针。</li>
+<li><code>this</code>指针被隐含地声明为<code>ClassName *const this</code>，意味着不能给<code>this</code>指针赋值；在<code>const</code>成员函数中，<code>this</code>指针的类型为<code>const ClassName* const</code>，说明<code>this</code>所指对象是不可修改的（即不能对该对象的数据成员进行赋值操作）。</li>
+<li><code>this</code>不是常规变量，而是个<strong>右值</strong>，所以不能取<code>this</code>地址。</li>
+<li>在以下场景中，经常显示引用<code>this</code>指针：<ul>
+<li>为实现对象的链式引用；</li>
+<li>为避免对同一对象进行赋值操作；</li>
+<li>在实现一些数据结构时，如list。<h2 id="inline内联函数"><a href="#inline内联函数" class="headerlink" title="inline内联函数"></a>inline内联函数</h2><h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>相当于把内联函数里面的内容写在调用内联函数处；</p>
+</li>
+<li><p>相当于不用执行进入函数的步骤，直接执行函数体；</p>
+</li>
+<li><p>相当于宏，却比宏多了类型检查，真正具有函数特性；</p>
+</li>
+<li><p>不能包含循环、递归、switch 等复杂操作；</p>
+</li>
+<li><p>在类声明中定义的函数，<strong>除了虚函数的其他函数</strong>都会自动隐式地当成内联函数。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 声明1（加 inline，建议使用）</span><br><span class="line">inline int functionName(int first, int secend,...);</span><br><span class="line"></span><br><span class="line">// 声明2（不加 inline）</span><br><span class="line">int functionName(int first, int secend,...);</span><br><span class="line"></span><br><span class="line">// 定义</span><br><span class="line">inline int functionName(int first, int secend,...) &#123;/****/&#125;;</span><br><span class="line"></span><br><span class="line">// 类内定义，隐式内联</span><br><span class="line">class A &#123;</span><br><span class="line">    int doA() &#123; return 0; &#125;         // 隐式内联</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 类外定义，需要显式内联</span><br><span class="line">class A &#123;</span><br><span class="line">    int doA();</span><br><span class="line">&#125;</span><br><span class="line">inline int A::doA() &#123; return 0; &#125;   // 需要显式内联</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="编译器对inline函数的处理步骤"><a href="#编译器对inline函数的处理步骤" class="headerlink" title="编译器对inline函数的处理步骤"></a>编译器对inline函数的处理步骤</h3><ol>
+<li>将inline函数体复制到inline函数调用点处</li>
+<li>为所用inline函数中的局部变量分配内存空间</li>
+<li>将inline函数的入参和返回值映射到调用方法的局部变量空间中</li>
+<li>如果inline函数有多个返回点，将其转变为inline函数代码块末尾的分支（使用GOTO）</li>
+</ol>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>inline函数如同宏函数一样将在被调用处进行<strong>代码展开</strong>，省去了<strong>参数压栈</strong>、<strong>栈帧开辟与回收</strong>、<strong>结果返回</strong>等，从而提高程序<strong>运行速度</strong>。</li>
+<li>相比宏函数来说，在代码展开时会进行<strong>安全检查</strong>或<strong>自动类型转换</strong>（同普通函数），而宏定义不会。</li>
+<li>在类中声明同时定义的成员函数，自动转换为内联函数，因此内联函数可以访问类的成员变量，宏定义不能。</li>
+<li>内联函数在运行时可调试，宏定义不能。<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4></li>
+<li><strong>代码膨胀</strong>。内联是以代码膨胀（复制）为代价，消除函数调用带来的开销。如果执行函数体内代码的时间，相比于函数调用的开销较大，则效率的收获会很少。另一方面，每一处内联函数的调用都要复制代码，将使程序总代码量增大，消耗更多内存空间。</li>
+<li>inline函数无法随着函数库升级而升级。inline函数的改变需要重新编译，不像non-inline可以直接链接。</li>
+<li>是否内联，程序员不可控。inline只是对编译器的建议，是否对函数内联，决定权在于编译器。<h4 id="虚函数（virtual）可否内联"><a href="#虚函数（virtual）可否内联" class="headerlink" title="虚函数（virtual）可否内联"></a>虚函数（virtual）可否内联</h4></li>
+</ol>
+<ul>
+<li>虚函数可以内联，但是当虚函数表现多态性的时候不能内联。</li>
+<li>内联是在编译期建议compiler内联，而虚函数的多态性在运行期，编译器无法知道运行期调用哪个代码，因而表现多态性时（运行期）不可内联。</li>
+<li><code>inline virtual</code> 唯一可以内联的时候是：编译器知道所调用的对象是哪个类（如 <code>Base::who()</code>），这只有在编译器具有实际对象而不是对象的指针或引用时才会发生。<h4 id="虚函数内联使用"><a href="#虚函数内联使用" class="headerlink" title="虚函数内联使用"></a>虚函数内联使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;  </span><br><span class="line">using namespace std;</span><br><span class="line">class Base</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    inline virtual void who()</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;I am Base\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    virtual ~Base() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">class Derived : public Base</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    inline void who()  // 不写inline时隐式内联</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;I am Derived\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    // 此处的虚函数 who()，是通过类（Base）的具体对象（b）来调用的，编译期间就能确定了，</span><br><span class="line">    // 所以它可以是内联的，但最终是否内联取决于编译器。 </span><br><span class="line">    Base b;</span><br><span class="line">    b.who();</span><br><span class="line"></span><br><span class="line">    // 此处的虚函数是通过指针调用的，呈现多态性，需要在运行时期间才能确定，所以不能为内联。  </span><br><span class="line">    Base *ptr = new Derived();</span><br><span class="line">    ptr-&gt;who();</span><br><span class="line"></span><br><span class="line">    // 因为Base有虚析构函数（virtual ~Base() &#123;&#125;），所以 delete 时，</span><br><span class="line">    // 会先调用派生类（Derived）析构函数，再调用基类（Base）析构函数，防止内存泄漏。</span><br><span class="line">    delete ptr;</span><br><span class="line">    ptr = nullptr;</span><br><span class="line"></span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="pragma-pack-n"><a href="#pragma-pack-n" class="headerlink" title="#pragma pack(n)"></a>#pragma pack(n)</h2><p>设定结构体、联合及类成员变量以n字节方式对齐</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#pragma pack(push)  // 保存对齐状态</span><br><span class="line">#pragma pack(4)     // 设定为 4 字节对齐</span><br><span class="line"></span><br><span class="line">struct test</span><br><span class="line">&#123;</span><br><span class="line">    char m1;</span><br><span class="line">    double m4;</span><br><span class="line">    int m3;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#pragma pack(pop)   // 恢复对齐状态</span><br></pre></td></tr></table></figure>
+
+<h2 id="位域"><a href="#位域" class="headerlink" title="位域"></a>位域</h2><p>类可以将其（非静态）数据成员定义为位域（bit-field），在一个位域中含有一定数量的二进制位。当一个程序需要向其他程序或硬件设备传递二进制数据时，通常会用到位域。</p>
+<ul>
+<li>位域在内存中的布局是与机器有关的</li>
+<li>位域的类型必须是整型或枚举类型，带符号类型中的位域的行为将因具体实现而定</li>
+<li>取地址运算符（&amp;）不能作用于位域，任何指针都无法指向类的位域</li>
+</ul>
+<h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><ul>
+<li>volatile关键字是一种<strong>类型修饰符</strong>，用它声明的类型变量可被某些编译器未知的因素（操作系统、硬件、其他线程etc）更改，使用volatile即告诉编译器不应对这样的对象进行优化。</li>
+<li>volatile声明的变量，每次访问必须从内存中取值（others可能由于编译器的优化，从CPU寄存器中取值）。</li>
+<li>const可以是volatile（如只读的状态寄存器）。</li>
+<li>指针可以是volatile。</li>
+</ul>
+<h2 id="extern-“C”"><a href="#extern-“C”" class="headerlink" title="extern “C”"></a>extern “C”</h2><ul>
+<li>被<code>extern &quot;C&quot;</code>修饰的变量和函数是按照C语言的方式进行编译和连接的，extern “C” 的作用是让 C++ 编译器将 extern “C” 声明的代码当作 C 语言代码处理，可以避免 C++ 因符号修饰导致代码不能和C语言库中的符号进行链接的问题。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __cplusplus</span><br><span class="line">extern &quot;C&quot; &#123;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">void *memset(void *, int, size_t);</span><br><span class="line"></span><br><span class="line">#ifdef __cplusplus</span><br><span class="line">&#125;</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/23/c++/" data-id="cjznu9mjw00012kaqvn0n0yox" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/23/c++/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/23/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
